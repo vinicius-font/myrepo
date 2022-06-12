@@ -4,6 +4,8 @@
 
 const resposta = document.querySelector("#resposta")
 const campo = document.querySelector("#campo")
+const botao = document.querySelector("#botao")
+
 const respostas = [
   "Certeza!",
   "Não tenho tanta certeza.",
@@ -28,15 +30,24 @@ const respostas = [
 //gerar numero aleatorio
 numeroAleatorio = Math.floor(Math.random() * respostas.length)
 //console.log(numeroAleatorio)
-
 //clicar em fazer pergunta
 function fazerPergunta() {
+  
+  //pegando o ultimo caractere da pergunta
+  ultimo = campo.value.substr(campo.value.length-1, campo.value.length)
+
   if(campo.value == ""){
     alert("Você não digitou sua pergunta!")
     return
-  }else{
-    
+  }else if(ultimo != "?"){
+    alert("O que você digitou não é uma pergunta! Talvez faltou o '?'")
+    return
+  }
+    botao.setAttribute("disabled", true)
     numeroAleatorio = Math.floor(Math.random() * respostas.length)
     resposta.innerHTML = "<div>" + campo.value + "</div>" + respostas[numeroAleatorio]
-  }
+    setTimeout(function(){
+      resposta.style.opacity = 0;
+      botao.removeAttribute("disabled")
+  }, 3000)
 }
