@@ -46,6 +46,7 @@ function fazerPergunta() {
     botao.setAttribute("disabled", true)
     numeroAleatorio = Math.floor(Math.random() * respostas.length)
     resposta.innerHTML = "<div>" + campo.value + "</div>" + respostas[numeroAleatorio]
+    resposta.syle.opacity = 1
     setTimeout(function(){
       resposta.style.opacity = 0;
       botao.removeAttribute("disabled")
